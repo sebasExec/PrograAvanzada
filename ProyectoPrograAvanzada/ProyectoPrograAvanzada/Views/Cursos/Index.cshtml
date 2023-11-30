@@ -1,0 +1,62 @@
+﻿@model IEnumerable<ProyectoPrograAvanzada.Models.Curso>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<style>
+    /* Estilos para centrar el título */
+    h2 {
+        text-align: center;
+    }
+
+    /* Estilos para las tarjetas (cards) */
+    .card {
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        margin: 10px;
+        padding: 10px;
+        width: 300px;
+        display: inline-block;
+    }
+</style>
+
+<h2>Cursos</h2>
+
+<p>
+    @if (User.Identity.IsAuthenticated && User.IsInRole("Profesor"))
+    {
+        @Html.ActionLink("Crear Nuevo", "Create")
+    }
+</p>
+
+@foreach (var item in Model)
+{
+    <div class="card">
+        <h4>@Html.DisplayFor(modelItem => item.Nombre)</h4>
+        <p>Profesor: @Html.DisplayFor(modelItem => item.Profesor)</p>
+        <p>Horario: @Html.DisplayFor(modelItem => item.Horario)</p>
+        <p>Tiempo del curso: @Html.DisplayFor(modelItem => item.FechaInicio) - @Html.DisplayFor(modelItem => item.FechaFin)</p>
+
+        <div>
+            @if (User.Identity.IsAuthenticated)
+            {
+                @Html.ActionLink("Detalles", "Details", new { id = item.IdCurso }, new { @class = "btn btn-info" })
+
+                if (User.IsInRole("Profesor"))
+                {
+                    <text>&nbsp;</text> <!-- Espacio aquí -->
+                    @Html.ActionLink("Editar", "Edit", new { id = item.IdCurso }, new { @class = "btn btn-primary" })
+
+                    <text>&nbsp;</text> <!-- Espacio aquí -->
+                    @Html.ActionLink("Eliminar", "Delete", new { id = item.IdCurso }, new { @class = "btn btn-danger" })
+                }
+            }
+
+        </div>
+
+        <!-- Campos ocultos -->
+        @Html.HiddenFor(modelItem => item.IdReceta)
+        @Html.HiddenFor(modelItem => item.IdUsuario)
+    </div>
+}

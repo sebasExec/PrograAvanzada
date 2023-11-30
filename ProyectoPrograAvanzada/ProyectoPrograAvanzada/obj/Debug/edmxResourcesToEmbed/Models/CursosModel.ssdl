@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ProyectoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Curso">
+    <Key>
+      <PropertyRef Name="IdCurso" />
+    </Key>
+    <Property Name="IdCurso" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdReceta" Type="int" Nullable="false" />
+    <Property Name="IdUsuario" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="Nombre" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="Profesor" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="Horario" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="FechaInicio" Type="datetime" Nullable="false" />
+    <Property Name="FechaFin" Type="date" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="ProyectoModelStoreContainer">
+    <EntitySet Name="Curso" EntityType="Self.Curso" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>
